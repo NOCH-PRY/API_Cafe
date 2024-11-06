@@ -1,3 +1,6 @@
+# import django_heroku
+# django_heroku.settings(locals())
+import os
 """
 Django settings for API_Cafe project.
 
@@ -61,6 +64,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -96,20 +100,31 @@ WSGI_APPLICATION = 'API_Cafe.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mssql',
+#         'NAME': 'Cafe_Shop',
+#         'USER': 'omr',
+#         'PASSWORD': 'noch@@123456789',
+#         'HOST': '192.168.137.1',  # e.g., 'your-server.database.windows.net' or 'localhost'
+#         'PORT': '1433',  # Default SQL Server port
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#         },
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
-        'NAME': 'Cafe_Shop',
-        'USER': 'omr',
-        'PASSWORD': 'noch@@123456789',
-        'HOST': '192.168.137.1',  # e.g., 'your-server.database.windows.net' or 'localhost'
-        'PORT': '1433',  # Default SQL Server port
-        'OPTIONS': {
-            'driver': 'ODBC Driver 17 for SQL Server',
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cafe_app',  # your database name
+        'USER': 'admin',      # your username
+        'PASSWORD': 'WWXBLAIpHrYWvr7qnzKfUUoDnPiutvxc',  # your password
+        'HOST': 'dpg-cslhj21u0jms73f6q5ig-a.oregon-postgres.render.com',  # your hostname
+        'PORT': '5432',  # your port (default for PostgreSQL)
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -146,6 +161,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
