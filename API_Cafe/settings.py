@@ -117,12 +117,8 @@ WSGI_APPLICATION = 'API_Cafe.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cafe_app',  # your database name
-        'USER': 'admin',      # your username
-        'PASSWORD': 'WWXBLAIpHrYWvr7qnzKfUUoDnPiutvxc',  # your password
-        'HOST': 'dpg-cslhj21u0jms73f6q5ig-a.oregon-postgres.render.com',  # your hostname
-        'PORT': '5432',  # your port (default for PostgreSQL)
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
